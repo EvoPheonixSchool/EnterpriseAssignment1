@@ -1,0 +1,15 @@
+DROP DATABASE IF EXISTS assignment1;
+
+CREATE DATABASE assignment1;
+
+USE assignment1;
+
+CREATE TABLE Cabbages(
+	id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	linenumber int  NOT NULL,
+	alpha VARCHAR(50) NOT NULL,
+	beta VARCHAR(50) NOT NULL,
+	charlie VARCHAR(50) NOT NULL,
+	delta VARCHAR(50) NOT NULL
+);
+

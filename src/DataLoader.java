@@ -29,7 +29,7 @@ public class DataLoader {
 	private Connection con = null;
 
 	private final String connectionString = "jdbc:mysql://localhost/assignment1";
-	private final String username = "assignment1";
+	private final String username = "assignment1-1";
 	private final String password = "password";
 
 
