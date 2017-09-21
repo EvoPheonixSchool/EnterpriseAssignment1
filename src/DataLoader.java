@@ -21,7 +21,10 @@ import java.time.format.DateTimeFormatter;
 import java.sql.PreparedStatement;
 
 public class DataLoader {
-	private long elapsedTime;
+
+
+
+	/*private long elapsedTime;
 	private int recordsRead;
 	private int recordsInserted;
 
@@ -173,5 +176,5 @@ public class DataLoader {
 			try{ if(pstmt != null){ pstmt.close(); }}
 			catch(SQLException ex){System.out.println(ex.getMessage());}
 		}
-	}
+	}*/
 }

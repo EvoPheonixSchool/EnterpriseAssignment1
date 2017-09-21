@@ -8,7 +8,7 @@ import java.util.Scanner;
 /**this class will read the info from a file, create the cabbage objects, and moves it to the buffer
  * Created by Sheldon on 2017-09-21.
  */
-public class Producer {
+public class Producer implements Runnable {
 
     private long elapsedTime;
     private int recordsRead;
@@ -16,18 +16,22 @@ public class Producer {
 
     private Scanner cabbageScanner = null;
     private CabbageCleaner cc;
-    private Buffer buffer = new BlockingQueueBuffer();
-    //private Buffer buffer = new CabbageBuffer();
+    private Buffer buffer;
 
     private final String connectionString = "jdbc:mysql://localhost/assignment1";
     private final String username = "assignment1-1";
     private final String password = "password";
 
+    public Producer(Buffer buf){
+        buffer = buf;
+    }
+
     /**
      * this opens the file, inserts data into the cabbage class then moves it to the buffer
-     * Method taken from the dataloader class built by Stanley Pieda
+     * Method taken from the dataloader class called ProccessRecords built by Stanley Pieda
+     * modified by Sheldon McGrath
      */
-    public void processRecords() {
+    public void run() {
         // open file
         // open connection to database
         // delete old data
