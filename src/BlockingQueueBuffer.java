@@ -13,6 +13,7 @@ public class BlockingQueueBuffer implements Buffer{
 
     /**
      * default constructor initializes the buffer for cabbage
+     * By: Sheldon McGrath
      */
     public BlockingQueueBuffer(){
         buffer = new ArrayBlockingQueue<Cabbage>(1);
@@ -23,6 +24,7 @@ public class BlockingQueueBuffer implements Buffer{
      * @param c Cabbage object to be placed
      * @return String message about the buffer placement
      * @throws InterruptedException
+     * By: Sheldon McGrath
      */
     public String putData(Cabbage c) throws InterruptedException {
         //puts cabbage into the buffer
@@ -36,6 +38,7 @@ public class BlockingQueueBuffer implements Buffer{
      * gets the next cabbage object in the buffer
      * @return Cabbage the next cabbage object
      * @throws InterruptedException
+     * By: Sheldon McGrath
      */
     public Cabbage getData() throws InterruptedException {
         //takes the next Cabbage object from the buffer

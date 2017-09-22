@@ -1,4 +1,5 @@
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
@@ -16,15 +17,44 @@ public class CabbageCleaner {
      * @param cs connection string
      * @param un username
      * @param pw password
+     * By: Sheldon McGrath
      */
     public CabbageCleaner(String cs,String un,String pw){
         connectionString = cs;
         username = un;
         password = pw;
         //calls the method for deleting the table
+        openConnection();
         deleteAllCabbage();
+        closeConnection();
     }
 
+    /**
+     * Opens the connection to the database
+     * Method taken from the dataloader class built by Stanley Pieda
+     */
+    private void openConnection(){
+        try{
+            if(con != null){
+                System.out.println("Cannot create new connection, one exists already");
+            }
+            else{
+                con = DriverManager.getConnection(connectionString, username, password);
+            }
+        }
+        catch(SQLException ex){
+            ex.printStackTrace();
+        }
+    }
+
+    /**
+     * closes the connection to the database
+     * Method taken from the dataloader class built by Stanley Pieda
+     */
+    private void closeConnection() {
+        try{ if(con != null){ con.close(); }}
+        catch(SQLException ex){System.out.println(ex.getMessage());}
+    }
 
     /**
      * Method taken from the dataloader class built by Stanley Pieda
@@ -39,6 +69,7 @@ public class CabbageCleaner {
             pstmt = con.prepareStatement(
                     "TRUNCATE TABLE cabbages");
             pstmt.executeUpdate();
+            System.out.println("Cabbage has been removed");
         }
         catch(SQLException e){
             e.printStackTrace();

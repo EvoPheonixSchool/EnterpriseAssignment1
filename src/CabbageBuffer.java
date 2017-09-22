@@ -12,6 +12,7 @@ public class CabbageBuffer implements Buffer{
 
     /**
      * Default constructor initializes the arraylist
+     * By: Sheldon McGrath
      */
     public CabbageBuffer(){
         CabbageFarm = new ArrayList();
@@ -22,6 +23,7 @@ public class CabbageBuffer implements Buffer{
      * @param c Cabbage object to be placed in the buffer
      * @return String message about the cabbage placed in the buffer
      * @throws InterruptedException
+     * By: Sheldon McGrath
      */
     public synchronized String putData(Cabbage c) throws InterruptedException {
         //checks if the array is at its max
@@ -36,7 +38,6 @@ public class CabbageBuffer implements Buffer{
         CabbageFarm.add(c);
         read ++;
         //prints information about the records read
-        System.out.println(writen + " records have been read");
         message = "Cabbage added to buffer with ID: " + c.getId() + ". Buffer size: " + CabbageFarm.size();
         //notifies that there is data in the arraylist
         notifyAll();
@@ -49,6 +50,7 @@ public class CabbageBuffer implements Buffer{
      * Gets the next cabbage from the buffer
      * @return Cabbage next object to be written
      * @throws InterruptedException
+     * By: Sheldon McGrath
      */
     public synchronized Cabbage getData() throws InterruptedException {
         //check to see if buffer is empty
@@ -56,18 +58,22 @@ public class CabbageBuffer implements Buffer{
             System.out.println("The buffer is empty, waiting.");
             //waits for buffer to be populated
             wait();
+            return cabbage;
         }
 
         //take next cabbage
         cabbage = CabbageFarm.get(0);
         //remove cabbage taken from buffer
         CabbageFarm.remove(0);
+        if(cabbage.getAlpha() == "end"){
+            return cabbage;
+        }
         writen ++;
         //notify cabbage has been taken
         notifyAll();
         //print message about cabbage removed from the buffer
-        message = "Cabbage removed from buffer with ID: " + cabbage.getId();
-        System.out.println(message);
+        /*message = "Cabbage removed from buffer with ID: " + cabbage.getId();
+        System.out.println(message);*/
         //print message about records written
         message = writen + " records have been written.";
         System.out.println(message);
