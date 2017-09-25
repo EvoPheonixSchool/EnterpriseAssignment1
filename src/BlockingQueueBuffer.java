@@ -45,7 +45,7 @@ public class BlockingQueueBuffer implements Buffer{
         cabbage = buffer.take();
         //creates and displays message about the Cabbage removal
         message = "Cabbage taken has ID: " + cabbage.getId() + ". Buffer size: " + buffer.size();
-        System.out.println(message);
+        //System.out.println(message);
         return cabbage;
     }
 }

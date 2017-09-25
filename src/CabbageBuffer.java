@@ -66,6 +66,7 @@ public class CabbageBuffer implements Buffer{
         //remove cabbage taken from buffer
         CabbageFarm.remove(0);
         if(cabbage.getAlpha() == "end"){
+            cabbage.setBeta("C");
             return cabbage;
         }
         writen ++;

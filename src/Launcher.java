@@ -17,8 +17,8 @@ public class Launcher {
 
 
 		//choose between blocking queue or the cabbage buffer
-		//Buffer buffer = new BlockingQueueBuffer();
-		Buffer buffer = new CabbageBuffer();
+		Buffer buffer = new BlockingQueueBuffer();
+		//Buffer buffer = new CabbageBuffer();
 		//creation of threads and executor
 		ExecutorService exs = Executors.newCachedThreadPool();
 		Thread producer = new Thread(new Producer(buffer));

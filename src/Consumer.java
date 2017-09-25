@@ -12,6 +12,7 @@ public class Consumer implements Runnable{
     private Connection con = null;
     private int inserted = 0;
     private long start;
+    private boolean cabBuffer = false;
 
     private Buffer buffer;
 
@@ -69,6 +70,11 @@ public class Consumer implements Runnable{
         System.out.printf("%d mileseconds elapsed%n", elapsedTime);
         System.out.printf("%02d minutes, %02d seconds, %03d millisecs%n", minutes, seconds, elapsedTime % 1000);
         System.out.printf("Program by: Sheldon McGrath run on %s%n",dateTime.format(format));
+        if(cabBuffer == true){
+            System.out.println("Circular Buffer was used");
+        }else{
+            System.out.println("Blocking Queue Buffer was used");
+        }
     }
 
     /**
@@ -155,5 +161,10 @@ public class Consumer implements Runnable{
             }
 
         }
+
+        if(cab.getBeta() == "C"){
+            cabBuffer = true;
+        }
+
     }
 }
